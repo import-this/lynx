@@ -6,18 +6,22 @@ DEBUG = -g
 OPT = -O3 -s -DNDEBUG
 CFLAGS = -ansi -pedantic -Wall -Wextra -Wconversion -Wshadow
 LDFLAGS = -flto		# https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
-EXEC = ispowerful
+MAIN_EXEC = ispowerful
 TEST_EXEC = test
 SRCS = ispowerful.c
 MAIN = main.c
 TEST = test.c
 
-# Build program command
-$(EXEC): $(SRCS) $(MAIN)
+# Build main program command
+$(MAIN_EXEC): $(SRCS) $(MAIN)
 	$(CC) $(OPT) $(CFLAGS) $(LDFLAGS) $? -o $@
 	############################################################################
 	# Example program call:
 	# % ./ispowerful 1234
+
+# Build powerful library command
+powerful: $(SRCS)
+	$(CC) $(CFLAGS) -c $?
 
 # Build tests command
 $(TEST_EXEC): $(SRCS) $(TEST)
@@ -26,4 +30,4 @@ $(TEST_EXEC): $(SRCS) $(TEST)
 # Remove all the compilation and debugging files
 .PHONY: clean
 clean:
-	rm -rf $(EXEC) $(TEST_EXEC) *.o *.exe
+	rm -rf $(MAIN_EXEC) $(TEST_EXEC) *.o *.exe
