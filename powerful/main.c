@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 		fputs("The number specified is too large.", stderr);
 		return EXIT_FAILURE;
 	}
-	if (number < 0) {
+	if (number <= 0) {
 		fputs("The number specified should be positive.", stderr);
 		return EXIT_FAILURE;
 	}
