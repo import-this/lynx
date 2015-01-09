@@ -1,4 +1,4 @@
-package lynx.util;
+package lynx.util;		// Hypothetical package. Substitute your own.
 
 import java.util.concurrent.TimeUnit;
 
